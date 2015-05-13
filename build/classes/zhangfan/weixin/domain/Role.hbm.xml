@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2014-10-20 11:00:57 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="zhangfan.weixin.domain.Role" table="ROLE">
+        <id name="RoleID" type="java.lang.Integer" access="field">
+            <column name="ROLEID" />
+            <generator class="identity" />
+        </id>
+        <property name="RoleName" type="java.lang.String" access="field">
+            <column name="ROLENAME" />
+        </property>
+        <property name="RoleKey" type="java.lang.String" access="field">
+            <column name="ROLEKEY" />
+        </property>
+    </class>
+</hibernate-mapping>

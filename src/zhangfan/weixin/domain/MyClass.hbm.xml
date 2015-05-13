@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2014-10-20 11:00:57 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="zhangfan.weixin.domain.MyClass" table="MYCLASS">
+        <id name="ClassID" type="java.lang.Integer">
+            <column name="CLASSID" />
+            <generator class="identity" />
+        </id>
+        <property name="ClassCode" type="java.lang.String"  not-null="true">
+            <column name="CLASSCODE" />
+        </property>
+        <property name="Students" type="int">
+            <column name="STUDENTS" />
+        </property>
+    </class>
+</hibernate-mapping>

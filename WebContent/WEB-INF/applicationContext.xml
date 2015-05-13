@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	http://www.springframework.org/schema/tx 
+	http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+	http://www.springframework.org/schema/aop 
+	http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
+	
+	 <!--<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
+		destroy-method="close">
+		<property name="driverClass" value="com.mysql.jdbc.Driver"></property>
+		<property name="jdbcUrl" value="jdbc:mysql://localhost/myclass0822"></property>
+		<property name="user" value="root"></property>
+		<property name="password" value="111"></property>
+		<property name="maxPoolSize" value="40"></property>
+		<property name="minPoolSize" value="1"></property>
+		<property name="initialPoolSize" value="1"></property>
+		<property name="maxIdleTime" value="20"></property>
+	</bean> -->
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
+		destroy-method="close">
+		<property name="driverClass" value="com.mysql.jdbc.Driver"></property>
+		<property name="jdbcUrl" value="jdbc:mysql://w.rdc.sae.sina.com.cn:3307/app_myclass0822?useUnicode=true&amp;characterEncoding=utf-8&amp;autoReconnect=true"></property>
+		<property name="user" value="3lj12lj3lz"></property>
+		<property name="password" value="kklh454ilw001yhy31khmi2j12kxwl0i145zklmy"></property>
+		<property name="maxPoolSize" value="20"></property>
+		<property name="minPoolSize" value="1"></property>
+		<property name="initialPoolSize" value="1"></property>
+		<property name="maxIdleTime" value="10"></property>
+	</bean>
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource">
+			<ref local="dataSource" />
+		</property>
+		<property name="mappingResources">
+			<list>
+				<value>zhangfan/weixin/domain/Homework.hbm.xml</value>
+				<value>zhangfan/weixin/domain/MyClass.hbm.xml</value>
+				<value>zhangfan/weixin/domain/Notice.hbm.xml</value>
+				<value>zhangfan/weixin/domain/Role.hbm.xml</value>
+				<value>zhangfan/weixin/domain/Student.hbm.xml</value>
+				<value>zhangfan/weixin/domain/StuRole.hbm.xml</value>
+			</list>
+		</property>
+
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+				<prop key="hibernate.current_session_context_class">org.springframework.orm.hibernate3.SpringSessionContext
+				</prop>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
+				
+				
+				<prop key="hibernate.connection.autocommit">true</prop>
+			</props>
+
+		</property>
+	</bean>
+
+
+	<bean id="transactionManager"
+	class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+
+		<property name="sessionFactory" ref="sessionFactory" />
+
+	</bean>
+
+	<tx:annotation-driven transaction-manager="transactionManager" />
+
+
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="get*" read-only="true" propagation="REQUIRED" />
+			<tx:method name="find*" read-only="true" propagation="REQUIRED" />
+			<tx:method name="save*" propagation="REQUIRED" />
+			<tx:method name="update*" propagation="REQUIRED" />
+			<tx:method name="remove*" propagation="REQUIRED" />
+			<tx:method name="add*" propagation="REQUIRED" />
+			<tx:method name="*" />
+		</tx:attributes>
+
+	</tx:advice> 
+	
+	
+ 
+ 
+ 	<!-- __________________Dao__________________ -->
+ 	<bean id="MyClassDao" class="zhangfan.weixin.daoimpl.MyClassDaoImpl">
+ 		<property name="sessionFactory">
+ 			<ref local="sessionFactory"/>
+ 		</property>
+ 	</bean>
+ 	<bean id="StudentDao" class="zhangfan.weixin.daoimpl.StudentDaoImpl">
+ 		<property name="sessionFactory">
+ 			<ref local="sessionFactory"/>
+ 		</property>
+ 	</bean>
+ 	<bean id="StuRoleDao" class="zhangfan.weixin.daoimpl.StuRoleDaoImpl">
+ 		<property name="sessionFactory">
+ 			<ref local="sessionFactory"/>
+ 		</property>
+ 	</bean>
+ 	<!-- __________________Service__________________ -->
+ 	<bean id="MyClassService" class="zhangfan.weixin.serviceimpl.MyClassServiceImpl">
+ 		<property name="MyClassDao">
+ 			<ref local="MyClassDao"/>
+ 		</property>
+ 	</bean>
+ 	<bean id="StudentService" class="zhangfan.weixin.serviceimpl.StudentServiceImpl">
+ 		<property name="StudentDao">
+ 			<ref local="StudentDao"/>
+ 		</property>
+ 	</bean>
+ 	<bean id="StuRoleService" class="zhangfan.weixin.serviceimpl.StuRoleService">
+ 		<property name="StuRoleDao">
+ 			<ref local="StuRoleDao"/>
+ 		</property>
+ 	</bean>
+ 	
+ 	<!-- __________________Action__________________ -->
+ 	<bean name="TestAction" class="zhangfan.weixin.action.TestAction" scope="prototype">
+ 		<property name="StudentService">
+ 			<ref local="StudentService"/>
+ 		</property>
+ 	</bean>
+ 	<bean id="InterfaceComfirmAction" class="zhangfan.weixin.action.InterfaceComfirmAction" scope="prototype">
+ 		<property name="MyClassService">
+ 			<ref local="MyClassService"/>
+ 		</property>
+ 	</bean>
+ 	<bean id="CreateClassAction" class="zhangfan.weixin.action.CreateClassAction" scope="prototype">
+ 		<property name="MyClassService">
+ 			<ref local="MyClassService"/>
+ 		</property>
+ 		<property name="StudentService">
+ 			<ref local="StudentService"/>
+ 		</property>
+ 		<property name="StuRoleService">
+ 			<ref local="StuRoleService"/>
+ 		</property>
+ 	</bean>
+ 	<bean name="SubscribeAction" class="zhangfan.weixin.action.SubscribeAction" scope="prototype">
+ 		<property name="StudentService">
+ 			<ref local="StudentService"/>
+ 		</property>
+ 	</bean>
+	
+</beans>
