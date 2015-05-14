@@ -10,12 +10,12 @@
 	http://www.springframework.org/schema/aop 
 	http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
 	
-	 <!--<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
+	<!--  <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
 		destroy-method="close">
 		<property name="driverClass" value="com.mysql.jdbc.Driver"></property>
 		<property name="jdbcUrl" value="jdbc:mysql://localhost/myclass0822"></property>
 		<property name="user" value="root"></property>
-		<property name="password" value="111"></property>
+		<property name="password" value="123456"></property>
 		<property name="maxPoolSize" value="40"></property>
 		<property name="minPoolSize" value="1"></property>
 		<property name="initialPoolSize" value="1"></property>
@@ -116,7 +116,7 @@
  			<ref local="StudentDao"/>
  		</property>
  	</bean>
- 	<bean id="StuRoleService" class="zhangfan.weixin.serviceimpl.StuRoleService">
+ 	<bean id="StuRoleService" class="zhangfan.weixin.serviceimpl.StuRoleServiceImpl">
  		<property name="StuRoleDao">
  			<ref local="StuRoleDao"/>
  		</property>
