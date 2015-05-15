@@ -7,14 +7,11 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form action="interfacecomfirm" method="post">
-	<input type="submit">
-</form>
-<form action="createclass" method="post">
-	<input type="submit" value="createclass">
-</form>
-<form action="test" method="post">
-	<input type="submit" value="test">
+
+<!-- <a href="http://localhost:8080/MyClass0822/interfacecomfirm?signature=b230549e8f96d00c946b65754218ab851e9104da&amp;timestamp=1431589776&amp;nonce=2105834848" >createClassTest</a>
+ -->
+<form method="post" action="interfacecomfirm?signature=b230549e8f96d00c946b65754218ab851e9104da&amp;timestamp=1431589776&amp;nonce=2105834848">
+	<input type="submit" value="createClassTest">
 </form>
 </body>
 </html>

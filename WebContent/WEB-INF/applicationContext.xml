@@ -10,7 +10,7 @@
 	http://www.springframework.org/schema/aop 
 	http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
 	
-	<!--  <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
+	 <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
 		destroy-method="close">
 		<property name="driverClass" value="com.mysql.jdbc.Driver"></property>
 		<property name="jdbcUrl" value="jdbc:mysql://localhost/myclass0822"></property>
@@ -20,8 +20,8 @@
 		<property name="minPoolSize" value="1"></property>
 		<property name="initialPoolSize" value="1"></property>
 		<property name="maxIdleTime" value="20"></property>
-	</bean> -->
-	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
+	</bean>
+	<!-- <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
 		destroy-method="close">
 		<property name="driverClass" value="com.mysql.jdbc.Driver"></property>
 		<property name="jdbcUrl" value="jdbc:mysql://w.rdc.sae.sina.com.cn:3307/app_myclass0822?useUnicode=true&amp;characterEncoding=utf-8&amp;autoReconnect=true"></property>
@@ -31,7 +31,7 @@
 		<property name="minPoolSize" value="1"></property>
 		<property name="initialPoolSize" value="1"></property>
 		<property name="maxIdleTime" value="10"></property>
-	</bean>
+	</bean> -->
 	<bean id="sessionFactory"
 		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
 		<property name="dataSource">
