@@ -72,17 +72,17 @@ public class CreateClassAction extends ActionSupport {
 
 				// 调用Service层添加
 				if (MyClassService.addMyClass(newClass)) {
-					System.out.println("提醒用户已经创建了新班级");
-					ResponseUtil.sendTextResponse(response, "你创建的新班级代码是“"
-							+ rc + "”，请牢记！，其他同学通过该代码加入班级", fromusernaem);
+					
 					//把新增加的班级与该创建人绑定
 					stu.setMyClass(newClass);
 					StudentService.change(stu);
 					//修改创建人角色
-					
-					return "SUCCESS";
+					System.out.println("提醒用户已经创建了新班级");
+					ResponseUtil.sendTextResponse(response, "你创建的新班级代码是“"
+							+ rc + "”，请牢记！，其他同学通过该代码加入班级", fromusernaem);
+					return SUCCESS;
 				}
-				return "ERROR";
+				return ERROR;
 			}
 		}
 

@@ -14,4 +14,20 @@
   <welcome-file-list>
     <welcome-file>index.jsp</welcome-file>
   </welcome-file-list>
+  <servlet>    
+        <servlet-name>AT_ProxyServlet</servlet-name>    
+        <servlet-class>    
+             servlet.AT_ProxyServlet  
+        </servlet-class>    
+        <!-- 配置获取access_token所需参数appid和appsecret -->    
+        <init-param>    
+            <param-name>appid</param-name>    
+            <param-value>wx38fafa8832c60973</param-value>    
+        </init-param>    
+        <init-param>    
+            <param-name>appsecret</param-name>    
+            <param-value>04197b22ca54f795987a29ddeabd97c4</param-value>    
+        </init-param>    
+        <load-on-startup>0</load-on-startup>    
+    </servlet>    
 </web-app>

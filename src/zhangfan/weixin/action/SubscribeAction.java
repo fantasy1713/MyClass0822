@@ -76,7 +76,7 @@ public class SubscribeAction extends ActionSupport {
 				resp.setToUserName(fromusername);
 				resp.setFromUserName(tousername);
 				resp.setCreateTime(new Date().getTime());
-				resp.setMsgType("test");
+				resp.setMsgType("text");
 				resp.setContent(content);
 				ResponseUtil.sendTextResponse(response, resp);
 				return null;
